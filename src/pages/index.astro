@@ -1,53 +1,77 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { loadMarkdown, loadArticle, listArticleIds } from "../lib/content";
-import site from "../../data/site.json";
 
-const home = loadMarkdown("home.md");
-const articleIds = listArticleIds();
-const startHere = articleIds.slice(0, 6).map((id) => {
-  const { frontmatter } = loadArticle(id);
-  return { id, href: `/articles/${id}`, title: frontmatter.title };
+const websiteJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Online Supplements Singapore",
+  "url": "https://onlinesupplements.neoi.jp/",
+  "description": "Educational verification guide for online supplement listings in Singapore",
 });
 ---
-<BaseLayout title={home.frontmatter.title} description={home.frontmatter.description} path="/">
-  <h1>Health Supplements in Singapore</h1>
+<BaseLayout
+  title="Buy Supplements Online Singapore | Verification Guide"
+  description="A calm guide to buying supplements online in Singapore: seller verification, label consistency, and practical red flags."
+  path="/"
+>
+  <script type="application/ld+json" set:html={websiteJsonLd}></script>
+
+  <h1>Buying Supplements Online in Singapore: A Verification Guide</h1>
+
+  <p>A calm, text-focused guide to evaluating online supplement listings in Singapore: seller verification, label consistency, and common red flags.</p>
 
   <div class="disclaimer">
-    This site provides general educational information on health supplements.
-    It is not medical advice, diagnosis, or treatment recommendation.
-    Always speak with a qualified clinician about your own situation.
+    This site provides general educational information only. It is not medical advice, diagnosis, or treatment recommendation. Always speak with a qualified clinician about your own situation.
   </div>
 
-  <article set:html={home.html} />
+  <h2>Why online listings need extra verification</h2>
+  <p>Online supplement listings vary widely in quality and documentation. Unlike a physical pharmacy, online channels may lack consistent oversight. Verifying a listing before relying on it reduces uncertainty.</p>
 
-  <section>
-    <h2>Start here</h2>
-    <ul>
-      {startHere.map((item) => (
-        <li><a href={item.href}>{item.title}</a></li>
-      ))}
-    </ul>
-  </section>
+  <h2>The online verification checklist</h2>
+  <ul>
+    <li>Seller identity is clear (business name, contact, policy)</li>
+    <li>Product information is consistent across listings and batches</li>
+    <li>Full ingredient list is available (not vague "blend" descriptions)</li>
+    <li>Amounts and units are shown in standard format</li>
+    <li>Claims are realistic (avoid dramatic "instant" outcomes)</li>
+    <li>Images match the written label information</li>
+  </ul>
 
-  <section>
-    <h2>Explore related topics</h2>
-    <ul>
-      {site.exploreLinks.map((link) => (
-        <li><a href={link.url}>{link.label}</a></li>
-      ))}
-    </ul>
-  </section>
+  <h2>When to pause</h2>
+  <ul>
+    <li>Missing ingredient list or unclear amounts</li>
+    <li>Aggressive urgency language ("limited time", "guaranteed")</li>
+    <li>Conflicting product descriptions across sellers</li>
+    <li>Overly broad claims unrelated to general education products</li>
+  </ul>
 
-  <section>
-    <h2>Official Neoi Site</h2>
-    <p>
-      For product information and brand details, visit the official Neoi supplement site.
-    </p>
-    <p>
-      <a href={site.officialSite} target="_blank" rel="noopener noreferrer" class="official-link">
-        Visit Official Neoi Supplement Site →
-      </a>
-    </p>
-  </section>
+  <h2>Singapore context: pharmacy vs online</h2>
+  <p>In Singapore, physical pharmacies operate under regulatory oversight. Online listings may originate from various jurisdictions. Applying the same level of scrutiny to online sources as you would to a licensed pharmacy is a reasonable standard.</p>
+
+  <h2>Japan perspective: consistency over intensity</h2>
+  <p>Japanese supplement culture tends to value stable, consistent formulations over high-dose or novel ingredients. This preference for documentation consistency is a useful frame when evaluating any online listing.</p>
+
+  <figure style="margin: 40px 0 32px;">
+    <img
+      src="/verification-guide.png"
+      alt="Buying Supplements Online in Singapore: A Verification Guide — infographic covering seller checks, red flags, pharmacy vs online comparison, and Japan perspective"
+      style="width:100%;height:auto;display:block;border:1px solid #e5e5e5;"
+    />
+    <figcaption style="font-size:12px;color:#777;margin-top:6px;text-align:center;">
+      Visual summary of the verification guide above. Educational use only.
+    </figcaption>
+  </figure>
+
+  <p>
+    <a
+      href="https://supplement.neoi.jp/en"
+      target="_blank"
+      rel="noopener"
+      class="official-link"
+    >
+      Visit Official Neoi Supplement Site →
+    </a>
+  </p>
+
+  <p style="font-size:13px;color:#555;margin-top:32px;">Educational content only. Not medical or treatment advice.</p>
 </BaseLayout>

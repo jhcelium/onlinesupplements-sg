@@ -1,10 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { loadMarkdown } from "../lib/content";
 
-const loaded = loadMarkdown("faq.md");
-const { frontmatter, html } = loaded;
-const faqItems = frontmatter.faq ?? [];
+const faqItems = [
+  {
+    q: "How do I verify an online supplement seller?",
+    a: "Look for a clear business identity: name, contact information, and stable policies. Consistent documentation across listings and over time is a stronger signal than promotional language.",
+  },
+  {
+    q: "What is the first thing to check on an online listing?",
+    a: "Check for a complete ingredient list with amounts. If the list is missing, vague, or uses generic 'blend' language without amounts, pause and look for a more complete source.",
+  },
+  {
+    q: "If two sellers show different descriptions for the same product, what should I do?",
+    a: "Prefer the seller whose documentation is more stable and complete. If conflicts persist across sources, pause and look for official labeling from the manufacturer or brand.",
+  },
+  {
+    q: "Are low prices always a red flag?",
+    a: "Not always. A low price alone is not a red flag. However, when a low price is combined with poor documentation and exaggerated claims, the overall picture warrants extra caution.",
+  },
+  {
+    q: "Can I rely on reviews?",
+    a: "Reviews are secondary information. They are not a substitute for ingredient transparency and consistent labeling. Use them as context, not as a primary verification method.",
+  },
+];
 
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -16,15 +34,47 @@ const faqJsonLd = JSON.stringify({
   })),
 });
 ---
-<BaseLayout title={frontmatter.title} description={frontmatter.description} path="/faq">
-  <h1>{frontmatter.title}</h1>
+<BaseLayout
+  title="FAQ | Buying Supplements Online in Singapore"
+  description="Common questions about verifying online supplement listings in Singapore."
+  path="/faq/"
+>
+  <script type="application/ld+json" set:html={faqJsonLd}></script>
+
+  <h1>Online Supplement Questions in Singapore</h1>
 
   <div class="disclaimer">
     General educational information only. Not medical advice.
-    If pregnant, nursing, or on medication, consult a qualified clinician.
   </div>
 
-  <article set:html={html} />
+  {faqItems.map((item) => (
+    <section>
+      <h2>{item.q}</h2>
+      <p>{item.a}</p>
+    </section>
+  ))}
 
-  <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <figure style="margin: 40px 0 32px;">
+    <img
+      src="/quick-checklist.png"
+      alt="5-Minute Quick Verification Checklist — 10 essential checks before buying supplements online, covering seller identity, ingredient list, product images, expiry dates, claims language, pressure tactics, reviews, return policy, quality indicators, and price"
+      style="width:100%;height:auto;display:block;border:1px solid #e5e5e5;"
+    />
+    <figcaption style="font-size:12px;color:#777;margin-top:6px;text-align:center;">
+      Quick-reference checklist for every online supplement purchase. Educational use only.
+    </figcaption>
+  </figure>
+
+  <p>
+    <a
+      href="https://supplement.neoi.jp/en"
+      target="_blank"
+      rel="noopener"
+      class="official-link"
+    >
+      Visit Official Neoi Supplement Site →
+    </a>
+  </p>
+
+  <p style="font-size:13px;color:#555;margin-top:32px;">Educational content only. Not medical or treatment advice.</p>
 </BaseLayout>

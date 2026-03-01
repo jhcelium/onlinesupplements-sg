@@ -1,8 +1,62 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { loadMarkdown } from "../lib/content";
-const about = loadMarkdown("about.md");
+
+const orgJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Online Supplements Singapore",
+  "url": "https://onlinesupplements.neoi.jp/",
+});
 ---
-<BaseLayout title={about.frontmatter.title} description={about.frontmatter.description} path="/about">
-  <article set:html={about.html} />
+<BaseLayout
+  title="About | Online Supplements Singapore"
+  description="Purpose and approach behind Online Supplements Singapore."
+  path="/about/"
+>
+  <script type="application/ld+json" set:html={orgJsonLd}></script>
+
+  <h1>Purpose</h1>
+
+  <p>This site takes a grounded, non-commercial approach to evaluating online supplement listings in Singapore. The goal is to help readers ask better questions before relying on any online listing.</p>
+
+  <h2>What this site does not do</h2>
+  <ul>
+    <li>Sell or promote any product</li>
+    <li>Rank, rate, or review supplements</li>
+    <li>Provide dosage guidance</li>
+    <li>Offer medical advice of any kind</li>
+  </ul>
+
+  <h2>Approach</h2>
+  <p>Three principles guide the content here:</p>
+  <ul>
+    <li><strong>Documentation stability</strong> — consistent labeling across batches and sellers is a baseline signal of reliability.</li>
+    <li><strong>Ingredient transparency</strong> — a complete and standard ingredient list is more informative than marketing language.</li>
+    <li><strong>Red flag awareness</strong> — urgency language, vague claims, and missing information are patterns worth noticing.</li>
+  </ul>
+  <p>This perspective draws on the Japanese routine of preferring stable, well-documented formulations over high-intensity or novelty products.</p>
+
+  <figure style="margin: 40px 0 32px;">
+    <img
+      src="/seller-scorecard.png"
+      alt="Online Supplement Seller Evaluation Scorecard — a reference tool covering seller identity, product information quality, claims language, reputation, policies, and regulatory indicators, scored out of 50 points"
+      style="width:100%;height:auto;display:block;border:1px solid #e5e5e5;"
+    />
+    <figcaption style="font-size:12px;color:#777;margin-top:6px;text-align:center;">
+      Reference scorecard for evaluating online supplement sellers. Educational use only.
+    </figcaption>
+  </figure>
+
+  <p>
+    <a
+      href="https://supplement.neoi.jp/en"
+      target="_blank"
+      rel="noopener"
+      class="official-link"
+    >
+      Visit Official Neoi Supplement Site →
+    </a>
+  </p>
+
+  <p style="font-size:13px;color:#555;margin-top:32px;">Educational content only. Not medical or treatment advice.</p>
 </BaseLayout>
