@@ -3,31 +3,53 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const faqItems = [
   {
-    q: "How do I verify an online supplement seller?",
-    a: "Look for a clear business identity: name, contact information, and stable policies. Consistent documentation across listings and over time is a stronger signal than promotional language.",
+    q: "How to verify supplement seller Singapore online?",
+    a: "Start with identity: the seller should display a business name, registration details, physical address, and contact information. Stable policies (returns, refunds) that do not change between visits are a positive signal. Supplement seller verification Singapore means evaluating the seller's documentation before evaluating the product.",
   },
   {
-    q: "What is the first thing to check on an online listing?",
-    a: "Check for a complete ingredient list with amounts. If the list is missing, vague, or uses generic 'blend' language without amounts, pause and look for a more complete source.",
+    q: "What should be consistent across supplement listings?",
+    a: "The ingredient list — including specific ingredient forms and amounts in standard units — should match across all sellers listing the same product. Label consistency across sellers is a meaningful signal. If one seller shows 'magnesium citrate 200mg' and another shows only 'magnesium', treat this as a gap that warrants further inquiry.",
   },
   {
-    q: "If two sellers show different descriptions for the same product, what should I do?",
-    a: "Prefer the seller whose documentation is more stable and complete. If conflicts persist across sources, pause and look for official labeling from the manufacturer or brand.",
+    q: "How to verify supplement listing Singapore if info conflicts?",
+    a: "Prefer the listing that aligns with official product information from the brand or manufacturer. If you cannot locate a primary source, and seller descriptions conflict, pause. A credible seller will be able to direct you to consistent documentation. Conflicting information is not automatically disqualifying, but it does require resolution before relying on the listing.",
   },
   {
-    q: "Are low prices always a red flag?",
-    a: "Not always. A low price alone is not a red flag. However, when a low price is combined with poor documentation and exaggerated claims, the overall picture warrants extra caution.",
+    q: "Are marketplace reviews reliable for supplement verification?",
+    a: "Reviews are secondary signals. They reflect user experience, not ingredient accuracy or documentation quality. A product with many positive reviews may still have an incomplete ingredient list. Use reviews as context — not as a substitute for checking the ingredient list, seller identity, and official product information.",
   },
   {
-    q: "Can I rely on reviews?",
-    a: "Reviews are secondary information. They are not a substitute for ingredient transparency and consistent labeling. Use them as context, not as a primary verification method.",
+    q: "What does 'authentic supplements Singapore online' practically mean?",
+    a: "Authentic supplements Singapore online means the product matches its official documentation: the ingredient list is complete and matches the physical label, the seller can be verified, and the product originates from an identifiable supply chain. Authenticity is a documentation question, not a marketing claim.",
+  },
+  {
+    q: "How to check ingredient list completeness?",
+    a: "A complete ingredient list names each active ingredient by its specific chemical form (e.g. 'zinc gluconate', not just 'zinc'), states the amount per serving in standard units (mg, mcg, IU), and lists all excipients or inactive ingredients. If a listing uses 'proprietary blend' without amounts, or groups several ingredients under a single unnamed category, the list is incomplete.",
+  },
+  {
+    q: "Why are images not enough to verify a supplement listing?",
+    a: "Product images on marketplace listings are often stock photos or images that do not show the current batch label. An image cannot confirm what is in the bottle you will receive. Written ingredient information — matched against official product documentation — is more reliable than images alone.",
+  },
+  {
+    q: "What to do if claims on a supplement listing feel exaggerated?",
+    a: "Treat exaggerated claims as a documentation signal, not just a marketing style. Phrases like 'guaranteed results', 'cure', 'miracle', or 'instant' are not appropriate for supplement listings. If a listing's claims are inconsistent with its ingredient documentation, apply additional scrutiny to the entire listing — including the seller's identity and return policy.",
+  },
+  {
+    q: "Pharmacy vs online: what changes in verification?",
+    a: "A licensed pharmacy in Singapore operates under regulatory oversight, with trained staff and product accountability. Online listings may originate from multiple jurisdictions with variable oversight levels. The core verification principles remain the same, but online listings require you to do more of the verification work yourself: checking seller identity, ingredient documentation, and listing consistency.",
+  },
+  {
+    q: "What questions should I bring to a clinician about supplements?",
+    a: "This site does not provide medical advice. If you are considering supplements, a clinician can help you assess whether a specific ingredient is appropriate for your situation, whether it interacts with any medication you take, and what a reasonable approach looks like for your health context. That conversation is separate from product verification.",
   },
 ];
+
+const faqJsonLdItems = faqItems.slice(0, 4);
 
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
+  mainEntity: faqJsonLdItems.map((item) => ({
     "@type": "Question",
     name: item.q,
     acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -35,8 +57,8 @@ const faqJsonLd = JSON.stringify({
 });
 ---
 <BaseLayout
-  title="FAQ | Buying Supplements Online in Singapore"
-  description="Common questions about verifying online supplement listings in Singapore."
+  title="FAQ | Online Supplements in Singapore"
+  description="Common questions about buying supplements online in Singapore and verifying listings."
   path="/faq/"
 >
   <script type="application/ld+json" set:html={faqJsonLd}></script>
@@ -53,6 +75,11 @@ const faqJsonLd = JSON.stringify({
       <p>{item.a}</p>
     </section>
   ))}
+
+  <p>
+    For a broader guide to the supplement landscape in Singapore, see the
+    <a href="https://supplementsingapore.neoi.jp">Supplements Singapore guide</a>.
+  </p>
 
   <figure style="margin: 40px 0 32px;">
     <img
