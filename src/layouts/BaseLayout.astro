@@ -15,71 +15,229 @@ const { title, description, path } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <Seo title={title} description={description} path={path} />
     <style>
+      /* ── Design tokens ── */
       :root {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --text:    #1a1a1a;
+        --muted:   #555;
+        --subtle:  #888;
+        --border:  #d8d8d8;
+        --bg-tint: #f7f7f7;
+        --link:    #0a5ca8;
+        --max-w:   960px;
       }
+
+      /* ── Reset ── */
+      *, *::before, *::after { box-sizing: border-box; }
+
+      /* ── Base ── */
       body {
         margin: 0;
+        font-family: var(--font);
+        font-size: 17px;
+        line-height: 1.72;
+        color: var(--text);
         background: #fff;
-        color: #111;
       }
-      main {
-        max-width: 760px;
-        margin: 0 auto;
-        padding: 24px 16px 48px;
-      }
+
+      /* ── Site header ── */
       header {
-        border-bottom: 1px solid #e5e5e5;
-        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        padding: 12px 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
+      nav a {
+        font-size: 14px;
+        color: var(--muted);
+        text-decoration: none;
+        margin-right: 20px;
+        letter-spacing: 0.01em;
+      }
+      nav a:hover { color: var(--text); }
+
       .header-logo img {
-        height: 40px;
+        height: 38px;
         width: auto;
         display: block;
       }
+
+      /* ── Main content ── */
+      main {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 44px 24px 72px;
+      }
+
+      /* ── Footer ── */
       footer {
-        border-top: 1px solid #e5e5e5;
-        padding: 16px;
+        border-top: 1px solid var(--border);
+        padding: 20px 24px;
         font-size: 13px;
-        color: #555;
-        margin-top: 32px;
+        color: var(--muted);
+        margin-top: 56px;
       }
-      nav a {
-        margin-right: 12px;
-        font-size: 14px;
-        color: #0b63ce;
-        text-decoration: none;
+      footer a {
+        color: var(--muted);
       }
-      nav a:hover {
-        text-decoration: underline;
+      footer a:hover { color: var(--text); }
+
+      /* ── Typography ── */
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin: 0 0 1.1rem;
+        color: var(--text);
       }
-      a {
-        color: #0b63ce;
-      }
-      h1,
-      h2,
-      h3 {
+      h2 {
+        font-size: 1.15rem;
         font-weight: 600;
+        line-height: 1.35;
+        margin: 2.8rem 0 0.65rem;
+        padding-bottom: 0.35rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
       }
+      h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 1.6rem 0 0.4rem;
+      }
+      p { margin: 0 0 1.1rem; }
+      em { font-style: italic; }
+      strong { font-weight: 600; }
+
+      /* ── Links ── */
+      a {
+        color: var(--link);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 2px;
+        transition: text-decoration-color 0.12s;
+      }
+      a:hover { text-decoration-color: currentColor; }
+
+      /* ── Lists ── */
+      ul, ol {
+        padding-left: 1.5rem;
+        margin: 0 0 1.1rem;
+      }
+      li { margin-bottom: 0.45rem; }
+
+      /* ── Figures ── */
+      figure { margin: 2.8rem 0; }
+      figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid var(--border);
+      }
+      figcaption {
+        font-size: 12px;
+        color: var(--subtle);
+        margin-top: 7px;
+        text-align: center;
+      }
+
+      /* ─────────────────────────────────────────────
+         Content components
+         ───────────────────────────────────────────── */
+
+      /* Disclaimer — legal / YMYL notice */
       .disclaimer {
-        border: 1px solid #ddd;
-        background: #fafafa;
-        padding: 10px 12px;
-        font-size: 13px;
-        margin: 12px 0 24px;
-      }
-      .official-link {
-        display: inline-block;
-        border: 1px solid #0b63ce;
-        padding: 6px 10px;
+        border-left: 3px solid var(--border);
+        padding: 9px 14px;
         font-size: 14px;
-        text-decoration: none;
+        color: var(--muted);
+        margin: 0 0 2.2rem;
+        background: none;
       }
-      .official-link:hover {
-        background: #f4f8ff;
+
+      /* Key Takeaway — single strong point */
+      .key-takeaway {
+        border-left: 3px solid var(--text);
+        padding: 10px 14px;
+        font-size: 15px;
+        margin: 1.8rem 0;
+        background: none;
+      }
+
+      /* Definition Block — term or concept explanation */
+      .definition {
+        border-left: 3px solid var(--border);
+        padding: 10px 14px;
+        font-size: 15px;
+        color: var(--muted);
+        margin: 1.8rem 0;
+        font-style: italic;
+        background: none;
+      }
+
+      /* Cross Reference — link to related content */
+      .cross-ref {
+        font-size: 14px;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        padding-top: 10px;
+        margin-top: 2.5rem;
+      }
+      .cross-ref a {
+        color: var(--muted);
+      }
+      .cross-ref a:hover { color: var(--text); }
+
+      /* Checklist — ul with tighter, structured look */
+      .checklist {
+        list-style: none;
+        padding-left: 0;
+        margin: 0 0 1.1rem;
+        border: 1px solid var(--border);
+      }
+      .checklist li {
+        padding: 8px 14px;
+        border-bottom: 1px solid var(--border);
+        font-size: 15px;
+        margin: 0;
+      }
+      .checklist li:last-child { border-bottom: none; }
+      .checklist li::before {
+        content: "□  ";
+        color: var(--subtle);
+        font-size: 12px;
+        vertical-align: middle;
+      }
+
+      /* Page footer note */
+      .page-note {
+        font-size: 13px;
+        color: var(--subtle);
+        margin-top: 2.8rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      /* Official site link — restrained inline style */
+      .official-link {
+        display: inline;
+        font-size: 15px;
+        color: var(--link);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 2px;
+        transition: text-decoration-color 0.12s;
+      }
+      .official-link:hover { text-decoration-color: currentColor; }
+
+      /* ── Responsive ── */
+      @media (max-width: 600px) {
+        h1 { font-size: 1.55rem; }
+        h2 { font-size: 1.05rem; }
+        main { padding: 28px 16px 56px; }
+        header { padding: 10px 16px; }
+        .header-logo img { height: 32px; }
       }
     </style>
   </head>
@@ -104,7 +262,7 @@ const { title, description, path } = Astro.props;
     <footer>
       <div>{site.siteName}</div>
       <div>Educational content only. Not medical or treatment advice.</div>
-      <div style="margin-top:8px">
+      <div style="margin-top:6px">
         <a href={site.officialSite} target="_blank" rel="noopener noreferrer">
           Official Neoi Site
         </a>
