@@ -5,7 +5,7 @@ export const prerender = true;
 
 export async function GET() {
   const base = `https://${site.domain}`;
-  const staticPaths = ["/", "/about", "/faq"];
+  const staticPaths = ["/", "/about", "/faq", "/verification-checklist"];
   const articlePaths = listArticleIds().map((id) => `/articles/${id}`);
   const allPaths = [...staticPaths, ...articlePaths];
 
