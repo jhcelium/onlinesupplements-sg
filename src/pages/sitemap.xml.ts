@@ -3,13 +3,57 @@ import { listArticleIds } from "../lib/content";
 
 export const prerender = true;
 
+// Article publication dates — must match the dates in articles/[id].astro
+const articleDates: Record<string, string> = {
+  "01-what-is": "2024-10-01",
+  "02-how-singaporeans-choose": "2024-10-03",
+  "03-pharmacy-vs-online": "2024-10-07",
+  "04-reading-labels": "2024-10-10",
+  "05-common-misconceptions": "2024-10-14",
+  "06-japan-perspective": "2024-10-17",
+  "07-buying-checklist": "2024-10-21",
+  "08-reddit-questions": "2024-10-24",
+  "09-safety-no-hype": "2024-10-28",
+  "10-faq-expansion": "2024-10-31",
+};
+
+type UrlEntry = {
+  path: string;
+  lastmod: string;
+  changefreq: string;
+  priority: string;
+};
+
 export async function GET() {
   const base = `https://${site.domain}`;
-  const staticPaths = ["/", "/about", "/faq", "/verification-checklist"];
-  const articlePaths = listArticleIds().map((id) => `/articles/${id}`);
-  const allPaths = [...staticPaths, ...articlePaths];
 
-  const urls = allPaths.map((p) => `<url><loc>${base}${p}</loc></url>`).join("");
+  const staticEntries: UrlEntry[] = [
+    { path: "/",                      lastmod: "2025-03-16", changefreq: "weekly",  priority: "1.0" },
+    { path: "/about/",                lastmod: "2025-03-16", changefreq: "monthly", priority: "0.7" },
+    { path: "/faq/",                  lastmod: "2025-03-16", changefreq: "monthly", priority: "0.8" },
+    { path: "/verification-checklist/", lastmod: "2025-03-16", changefreq: "monthly", priority: "0.8" },
+  ];
+
+  const articleEntries: UrlEntry[] = listArticleIds().map((id) => ({
+    path: `/articles/${id}/`,
+    lastmod: "2025-03-16",
+    changefreq: "monthly",
+    priority: "0.6",
+  }));
+
+  const allEntries = [...staticEntries, ...articleEntries];
+
+  const urls = allEntries
+    .map(
+      (e) =>
+        `<url>` +
+        `<loc>${base}${e.path}</loc>` +
+        `<lastmod>${e.lastmod}</lastmod>` +
+        `<changefreq>${e.changefreq}</changefreq>` +
+        `<priority>${e.priority}</priority>` +
+        `</url>`
+    )
+    .join("");
 
   const body =
     `<?xml version="1.0" encoding="UTF-8"?>` +

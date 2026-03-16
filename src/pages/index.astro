@@ -1,18 +1,57 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const BASE_URL = "https://onlinesupplements.neoi.jp";
+
 const websiteJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Online Supplements Singapore",
-  "url": "https://onlinesupplements.neoi.jp/",
-  "description": "Educational verification guide for online supplement listings in Singapore",
+  "url": `${BASE_URL}/`,
+  "description": "Educational verification guide for online supplement listings in Singapore. Learn how to evaluate seller identity, label consistency, ingredient documentation, and red flags.",
+  "inLanguage": "en-SG",
+  "about": {
+    "@type": "Thing",
+    "name": "Online supplement verification in Singapore",
+    "description": "Practical guidance for evaluating supplement listings sold online in Singapore, covering seller identity, ingredient transparency, and documentation-based decision-making."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Online Supplements Singapore",
+    "url": `${BASE_URL}/`,
+    "knowsAbout": [
+      "health supplements",
+      "supplement verification",
+      "supplement label reading",
+      "online supplement safety",
+      "Singapore supplement regulations",
+      "Health Sciences Authority Singapore"
+    ],
+    "areaServed": {
+      "@type": "Country",
+      "name": "Singapore"
+    },
+    "inLanguage": "en-SG"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${BASE_URL}/?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "main > p:first-of-type"]
+  }
 });
 ---
 <BaseLayout
   title="Buy Supplements Online Singapore | Seller Verification Checklist"
   description="How to verify online supplement listings in Singapore: seller identity, label consistency, documentation stability, and red flags."
   path="/"
+  image="/verification-guide.png"
 >
   <script type="application/ld+json" set:html={websiteJsonLd}></script>
 
@@ -100,6 +139,8 @@ const websiteJsonLd = JSON.stringify({
     <img
       src="/verification-guide.png"
       alt="Buying Supplements Online in Singapore: A Verification Guide — infographic covering seller checks, red flags, pharmacy vs online comparison, and Japan perspective"
+      fetchpriority="high"
+      loading="eager"
     />
     <figcaption>Visual summary of the verification guide above. Educational use only.</figcaption>
   </figure>

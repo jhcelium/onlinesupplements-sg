@@ -5,15 +5,17 @@ interface Props {
   title?: string;
   description?: string;
   path?: string;
+  image?: string;
+  ogType?: string;
 }
-const { title, description, path } = Astro.props;
+const { title, description, path, image, ogType } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-SG">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <Seo title={title} description={description} path={path} />
+    <Seo title={title} description={description} path={path} image={image} ogType={ogType} />
     <style>
       /* ── Design tokens ── */
       :root {
@@ -255,7 +257,7 @@ const { title, description, path } = Astro.props;
         class="header-logo"
         aria-label="Visit Official Neoi Supplement Site"
       >
-        <img src="/neoi-logo.png" alt="supplement.neoi.jp" />
+        <img src="/neoi-logo.png" alt="supplement.neoi.jp" loading="lazy" />
       </a>
     </header>
     <main><slot /></main>

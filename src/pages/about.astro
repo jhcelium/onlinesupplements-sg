@@ -1,17 +1,37 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const BASE_URL = "https://onlinesupplements.neoi.jp";
+
 const orgJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Online Supplements Singapore",
-  "url": "https://onlinesupplements.neoi.jp/",
+  "url": `${BASE_URL}/`,
+  "description": "An educational resource helping Singapore residents apply consistent, documentation-based evaluation to online supplement listings.",
+  "inLanguage": "en-SG",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Singapore"
+  },
+  "knowsAbout": [
+    "health supplements Singapore",
+    "supplement verification",
+    "supplement label reading",
+    "online supplement safety",
+    "Singapore Health Sciences Authority regulations",
+    "supplement ingredient transparency",
+    "supplement red flag patterns",
+    "pharmacy vs online supplement purchasing",
+    "Japanese supplement quality standards"
+  ]
 });
 ---
 <BaseLayout
   title="About | Online Supplements Singapore"
   description="Purpose: improve verification habits for online supplement shopping in Singapore."
   path="/about/"
+  image="/seller-scorecard.png"
 >
   <script type="application/ld+json" set:html={orgJsonLd}></script>
 
@@ -49,6 +69,21 @@ const orgJsonLd = JSON.stringify({
     This approach draws on the Japanese supplement tradition, which prioritises stable and consistently documented formulations over high-dose intensity or novel ingredient marketing.
   </p>
 
+  <h2>Regulatory context in Singapore</h2>
+  <p>
+    Health supplements sold in Singapore are subject to oversight by the <strong>Health Sciences Authority (HSA)</strong>, the national regulatory authority responsible for regulating therapeutic products, health products, and medical devices under the Health Products Act (Cap. 122D).
+  </p>
+  <p>
+    Under the HSA framework, health supplements are classified as health products and must comply with requirements covering safety, labelling accuracy, and prohibited or restricted ingredients. Suppliers are responsible for ensuring their products meet these requirements before placing them on the Singapore market. The HSA maintains a list of controlled and prohibited substances, publishes safety alerts, and takes enforcement action against non-compliant products.
+  </p>
+  <p>
+    Importantly, health supplements in Singapore are <em>not</em> subject to pre-market approval in the same way as therapeutic drugs. This means that the presence of a supplement on a marketplace does not indicate that the HSA has individually assessed or certified it. Consumer-level verification — checking seller identity, ingredient documentation, and listing consistency — remains a meaningful layer of due diligence beyond regulatory baseline requirements.
+  </p>
+  <p>
+    For official HSA guidance on health products, visit the
+    <a href="https://www.hsa.gov.sg/health-products-regulation" target="_blank" rel="noopener noreferrer">HSA Health Products Regulation</a> section of the HSA website.
+  </p>
+
   <div class="cross-ref">
     For a broader view of the supplement landscape in Singapore, see the
     <a href="https://supplementsingapore.neoi.jp">Supplements Singapore guide</a>.
@@ -58,6 +93,8 @@ const orgJsonLd = JSON.stringify({
     <img
       src="/seller-scorecard.png"
       alt="Online Supplement Seller Evaluation Scorecard — a reference tool covering seller identity, product information quality, claims language, reputation, policies, and regulatory indicators, scored out of 50 points"
+      fetchpriority="high"
+      loading="eager"
     />
     <figcaption>Reference scorecard for evaluating online supplement sellers. Educational use only.</figcaption>
   </figure>
