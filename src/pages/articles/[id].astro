@@ -9,12 +9,156 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 const article = loadArticle(id!);
+
+const BASE_URL = "https://onlinesupplements.neoi.jp";
+const articleUrl = `${BASE_URL}/articles/${id}/`;
+
+// Publication dates per article
+const datePublished: Record<string, string> = {
+  "01-what-is": "2024-10-01",
+  "02-how-singaporeans-choose": "2024-10-03",
+  "03-pharmacy-vs-online": "2024-10-07",
+  "04-reading-labels": "2024-10-10",
+  "05-common-misconceptions": "2024-10-14",
+  "06-japan-perspective": "2024-10-17",
+  "07-buying-checklist": "2024-10-21",
+  "08-reddit-questions": "2024-10-24",
+  "09-safety-no-hype": "2024-10-28",
+  "10-faq-expansion": "2024-10-31",
+};
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.frontmatter.title,
+  "description": article.frontmatter.description,
+  "url": articleUrl,
+  "datePublished": datePublished[id!] ?? "2024-10-01",
+  "dateModified": "2025-03-16",
+  "inLanguage": "en-SG",
+  "author": {
+    "@type": "Organization",
+    "name": "Online Supplements Singapore",
+    "url": `${BASE_URL}/`
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Online Supplements Singapore",
+    "url": `${BASE_URL}/`
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "article > p:first-child"]
+  }
+};
+
+// HowTo schema for step-by-step articles
+const howToSchemas: Record<string, object> = {
+  "04-reading-labels": {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Read a Supplement Label Step by Step",
+    "description": "A practical method for reading supplement labels to evaluate products sold in Singapore.",
+    "inLanguage": "en-SG",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Read the ingredient list first",
+        "text": "Start with the ingredient list, not the front-of-pack claims. Marketing lines are designed to attract attention; the ingredient list tells you what you are actually buying."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Check serving size and suggested use",
+        "text": "Review serving size and suggested use. Many people accidentally double-count ingredients when they combine products."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Look for cautions and allergen statements",
+        "text": "Check for caution notes and allergen statements, especially if you have sensitivities or take other products."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Evaluate label clarity",
+        "text": "If a label is vague, uses unclear wording, or leans on dramatic promises, treat that as a signal to slow down and research further."
+      }
+    ]
+  },
+  "07-buying-checklist": {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Pre-Purchase Supplement Checklist for Singapore Buyers",
+    "description": "A step-by-step checklist for buying supplements in Singapore without impulse decisions.",
+    "inLanguage": "en-SG",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "State your reason for buying",
+        "text": "Before buying, write down your reason in one sentence. If you cannot clearly state why you need the supplement, slow down."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Check the ingredient list and serving size",
+        "text": "Review the ingredient list and serving size carefully. If you cannot explain what the product contains, do not proceed."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Consider ingredient overlap",
+        "text": "Consider overlap with what you already take. Many common ingredients appear in multiple products. If unsure, ask a pharmacist or clinician with a full list."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Assess the seller and listing quality",
+        "text": "Evaluate seller identity, contact information, and description quality. Clear details, stable contact information, and restrained claims are positive signals. If you feel pressured by timers, 'limited stock' messages, or extreme promises, pause rather than buy."
+      }
+    ]
+  }
+};
+
+// DefinedTermSet schema for terminology articles
+const definedTermSchemas: Record<string, object> = {
+  "01-what-is": {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "name": "Health Supplement Terminology",
+    "description": "Key terms for understanding health supplements in the Singapore context.",
+    "inLanguage": "en-SG",
+    "hasDefinedTerm": [
+      {
+        "@type": "DefinedTerm",
+        "name": "Health Supplement",
+        "description": "A product intended to add nutrients or other ingredients to your diet. In Singapore, health supplements are sold in pharmacies, supermarkets, and online marketplaces. They sit between food and medicine — not a substitute for medical treatment, and not automatically 'needed' just because they exist."
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Supplement",
+        "description": "A product used to supplement the diet with nutrients, herbs, or other substances. Not classified as a medicine under Singapore's Health Products Act; not required to demonstrate therapeutic efficacy as a pre-market condition for the general health supplement category."
+      },
+      {
+        "@type": "DefinedTerm",
+        "name": "Dietary Supplement",
+        "description": "A product that supplements the diet and contains one or more dietary ingredients, including vitamins, minerals, herbs, amino acids, or other substances. In Singapore, regulated as a health product under the Health Sciences Authority (HSA) framework."
+      }
+    ]
+  }
+};
+
+const howToSchema = howToSchemas[id!];
+const definedTermSchema = definedTermSchemas[id!];
+
+const articleJsonLdStr = JSON.stringify(articleJsonLd);
+const howToJsonLdStr = howToSchema ? JSON.stringify(howToSchema) : null;
+const definedTermJsonLdStr = definedTermSchema ? JSON.stringify(definedTermSchema) : null;
 ---
 <BaseLayout
   title={article.frontmatter.title}
   description={article.frontmatter.description}
-  path={`/articles/${id}`}
+  path={`/articles/${id}/`}
+  ogType="article"
 >
+  <script type="application/ld+json" set:html={articleJsonLdStr}></script>
+  {howToJsonLdStr && <script type="application/ld+json" set:html={howToJsonLdStr}></script>}
+  {definedTermJsonLdStr && <script type="application/ld+json" set:html={definedTermJsonLdStr}></script>}
+
   <h1>{article.frontmatter.title}</h1>
   <article set:html={article.html} />
   <p style="margin-top:32px"><a href="/">← Back to home</a></p>

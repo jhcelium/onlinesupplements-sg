@@ -12,7 +12,7 @@ const faqItems = [
   },
   {
     q: "How to verify supplement listing Singapore if info conflicts?",
-    a: "Prefer the listing that aligns with official product information from the brand or manufacturer. If you cannot locate a primary source, and seller descriptions conflict, pause. A credible seller will be able to direct you to consistent documentation. Conflicting information is not automatically disqualifying, but it does require resolution before relying on the listing.",
+    a: "Prefer the listing that aligns with official product information from the brand or manufacturer. If you cannot locate a primary source, and seller descriptions conflict, pause. A credible seller will be able to direct you to consistent documentation. Conflicting information is not automatically disqualifying, but it does require resolution before relying on either listing.",
   },
   {
     q: "Are marketplace reviews reliable for supplement verification?",
@@ -44,12 +44,14 @@ const faqItems = [
   },
 ];
 
-const faqJsonLdItems = faqItems.slice(0, 4);
-
 const faqJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqJsonLdItems.map((item) => ({
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "main section:first-of-type h2", "main section:first-of-type p"]
+  },
+  mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.q,
     acceptedAnswer: { "@type": "Answer", text: item.a },
@@ -60,6 +62,7 @@ const faqJsonLd = JSON.stringify({
   title="FAQ | Online Supplements in Singapore"
   description="Common questions about buying supplements online in Singapore and verifying listings."
   path="/faq/"
+  image="/quick-checklist.png"
 >
   <script type="application/ld+json" set:html={faqJsonLd}></script>
 
@@ -85,6 +88,8 @@ const faqJsonLd = JSON.stringify({
     <img
       src="/quick-checklist.png"
       alt="5-Minute Quick Verification Checklist — 10 essential checks before buying supplements online, covering seller identity, ingredient list, product images, expiry dates, claims language, pressure tactics, reviews, return policy, quality indicators, and price"
+      fetchpriority="high"
+      loading="eager"
     />
     <figcaption>Quick-reference checklist for every online supplement purchase. Educational use only.</figcaption>
   </figure>

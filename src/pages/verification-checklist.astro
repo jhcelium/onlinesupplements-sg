@@ -1,12 +1,90 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const BASE_URL = "https://onlinesupplements.neoi.jp";
+const PAGE_URL = `${BASE_URL}/verification-checklist/`;
+
 const webPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Buy Supplements Online Singapore | Verification Checklist",
-  "url": "https://onlinesupplements.neoi.jp/verification-checklist/",
+  "url": PAGE_URL,
   "description": "A checklist explaining transparency signals when purchasing supplements online in Singapore.",
+  "inLanguage": "en-SG",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "main > p:first-of-type"]
+  }
+});
+
+const howToJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Verify a Supplement Listing Before Buying Online in Singapore",
+  "description": "A five-step verification process for evaluating online supplement listings in Singapore, covering seller identity, label visibility, ingredient documentation, distributor information, and customer support.",
+  "inLanguage": "en-SG",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Check seller identity information",
+      "text": "Confirm the seller displays a registered business name, a physical or registered office address, and at least one direct contact method beyond a platform messaging form. Anonymous storefronts with no traceable identity are a structural gap, regardless of review count."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Verify product label visibility",
+      "text": "Confirm the listing includes images of the actual product label — not only marketing visuals or brand logos. The label image should show the front panel and, where possible, the supplement facts panel."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Confirm ingredient list availability",
+      "text": "Check that each active ingredient is named by its specific chemical form (e.g. 'magnesium citrate', not just 'magnesium') with a stated amount per serving in standard units (mg, mcg, IU). Listings using 'proprietary blend' without amounts have incomplete documentation."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Identify importer or distributor information",
+      "text": "For products manufactured outside Singapore, confirm the listing names the importer or authorised distributor. This establishes the supply chain step between manufacturer and consumer."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Assess customer support information",
+      "text": "Check that the seller provides a named contact, a stated response timeframe, and a clear return and refund policy that is consistently accessible and does not change between visits."
+    }
+  ]
+});
+
+const definedTermSetJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Online Supplement Listing Transparency Terms",
+  "description": "Key terms used in evaluating the transparency of online supplement listings in Singapore.",
+  "inLanguage": "en-SG",
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Seller Identity Information",
+      "description": "A verifiable seller displays a registered business name, a physical or registered office address, and at least one direct contact method beyond a platform messaging form. Consistent seller identity across repeat visits is a baseline expectation."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Product Label Visibility",
+      "description": "A transparent listing includes images of the actual product label — not only marketing visuals or brand logos — showing the front panel and, where possible, the supplement facts panel."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Ingredient List Availability",
+      "description": "Each active ingredient named by its specific chemical form with a stated amount per serving in standard units (mg, mcg, IU), including all excipients or inactive ingredients."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Importer or Distributor Information",
+      "description": "For products manufactured outside Singapore, the name of the importer or authorised distributor, establishing the supply chain step between the manufacturer and the consumer."
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "Customer Support Information",
+      "description": "A named seller contact, stated response timeframe, clear escalation path, and a return and refund policy that is consistently accessible and does not change between visits."
+    }
+  ]
 });
 ---
 <BaseLayout
@@ -15,6 +93,8 @@ const webPageJsonLd = JSON.stringify({
   path="/verification-checklist/"
 >
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
+  <script type="application/ld+json" set:html={howToJsonLd}></script>
+  <script type="application/ld+json" set:html={definedTermSetJsonLd}></script>
 
   <h1>Buy Supplements Online Singapore: Verification Checklist</h1>
 
@@ -86,6 +166,14 @@ const webPageJsonLd = JSON.stringify({
     A seller with a strong rating history may still provide an incomplete ingredient list.
     Conversely, a newer seller may provide complete and well-sourced documentation.
     The interpretation gap arises when platform metrics are treated as documentation verification — they serve different purposes and should be read separately.
+  </p>
+
+  <h2>Regulatory oversight of supplements in Singapore</h2>
+  <p>
+    The <strong>Health Sciences Authority (HSA)</strong> is Singapore's national regulatory authority for health products, operating under the Health Products Act (Cap. 122D). Health supplements fall within the HSA's health products framework, which sets baseline requirements for safety, labelling, and prohibited ingredients.
+  </p>
+  <p>
+    Unlike therapeutic drugs, most health supplements are not subject to individual pre-market product approval by the HSA. Suppliers bear responsibility for ensuring compliance before placing a product on the Singapore market. This regulatory structure means that verification at the listing level — checking seller identity, ingredient documentation, and supply chain transparency — is a consumer-level layer of diligence that complements, but does not replace, HSA oversight.
   </p>
 
   <h2>Search context</h2>
