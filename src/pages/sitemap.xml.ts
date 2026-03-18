@@ -26,12 +26,12 @@ type UrlEntry = {
 
 export async function GET() {
   const base = `https://${site.domain}`;
-
   const staticEntries: UrlEntry[] = [
     { path: "/",                      lastmod: "2025-03-16", changefreq: "weekly",  priority: "1.0" },
     { path: "/about/",                lastmod: "2025-03-16", changefreq: "monthly", priority: "0.7" },
     { path: "/faq/",                  lastmod: "2025-03-16", changefreq: "monthly", priority: "0.8" },
-    { path: "/verification-checklist/", lastmod: "2025-03-16", changefreq: "monthly", priority: "0.8" },
+    { path: "/verification-checklist/",      lastmod: "2025-03-16", changefreq: "monthly", priority: "0.8" },
+    { path: "/seller-transparency-signals/", lastmod: "2025-03-16", changefreq: "monthly", priority: "0.8" },
   ];
 
   const articleEntries: UrlEntry[] = listArticleIds().map((id) => ({
