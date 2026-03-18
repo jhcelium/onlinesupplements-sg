@@ -4,6 +4,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const BASE_URL = "https://onlinesupplements.neoi.jp";
 const PAGE_URL = `${BASE_URL}/verification-checklist/`;
 
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "Verification Checklist", "item": PAGE_URL },
+  ],
+});
+
 const webPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -92,6 +101,7 @@ const definedTermSetJsonLd = JSON.stringify({
   description="A checklist explaining transparency signals when purchasing supplements online in Singapore."
   path="/verification-checklist/"
 >
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
   <script type="application/ld+json" set:html={howToJsonLd}></script>
   <script type="application/ld+json" set:html={definedTermSetJsonLd}></script>

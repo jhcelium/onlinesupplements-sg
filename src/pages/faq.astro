@@ -1,6 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const BASE_URL = "https://onlinesupplements.neoi.jp";
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": `${BASE_URL}/faq/` },
+  ],
+});
+
 const faqItems = [
   {
     q: "How to verify supplement seller Singapore online?",
@@ -64,6 +75,7 @@ const faqJsonLd = JSON.stringify({
   path="/faq/"
   image="/quick-checklist.png"
 >
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
   <script type="application/ld+json" set:html={faqJsonLd}></script>
 
   <h1>Online Supplement Questions in Singapore</h1>
@@ -88,8 +100,11 @@ const faqJsonLd = JSON.stringify({
     <img
       src="/quick-checklist.png"
       alt="5-Minute Quick Verification Checklist — 10 essential checks before buying supplements online, covering seller identity, ingredient list, product images, expiry dates, claims language, pressure tactics, reviews, return policy, quality indicators, and price"
+      width="764"
+      height="1024"
       fetchpriority="high"
       loading="eager"
+      decoding="sync"
     />
     <figcaption>Quick-reference checklist for every online supplement purchase. Educational use only.</figcaption>
   </figure>
