@@ -1,12 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const BASE_URL = "https://onlinesupplements.neoi.jp";
+const PAGE_URL = `${BASE_URL}/seller-transparency-signals/`;
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "Seller Transparency Signals", "item": PAGE_URL },
+  ],
+});
+
 const webPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Buy Supplements Online Singapore | Seller Transparency Signals",
-  "url": "https://onlinesupplements.neoi.jp/seller-transparency-signals/",
+  "url": PAGE_URL,
   "description": "A structured explanation of seller transparency signals commonly seen on online supplement listings in Singapore.",
+  "inLanguage": "en-SG",
 });
 ---
 <BaseLayout
@@ -14,6 +27,7 @@ const webPageJsonLd = JSON.stringify({
   description="A structured explanation of seller transparency signals commonly seen on online supplement listings in Singapore."
   path="/seller-transparency-signals/"
 >
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
 
   <h1>Buy Supplements Online Singapore: Seller Transparency Signals</h1>

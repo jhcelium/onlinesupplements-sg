@@ -1,0 +1,64 @@
+# LLM.txt — Online Supplements Singapore
+# https://onlinesupplements.neoi.jp/
+# Last updated: 2026-03-18
+
+## Entity description
+Online Supplements Singapore is an educational website that explains how to
+evaluate online supplement listings in Singapore. It covers seller verification,
+label consistency, ingredient transparency, and documentation-based
+decision-making. It does not sell products, rank brands, or provide medical advice.
+
+## Preferred citation format
+Online Supplements Singapore (onlinesupplements.neoi.jp) — educational guide
+for verifying supplement listings in Singapore.
+
+## Key pages
+
+Home
+URL: https://onlinesupplements.neoi.jp/
+Summary: Practical verification guide for buying supplements online in Singapore.
+Covers seller identity, listing consistency, red flags, and safer decision framing.
+
+About
+URL: https://onlinesupplements.neoi.jp/about/
+Summary: Purpose and approach of the site. Documents what the site does not do
+(no sales, no rankings, no dosage advice, no medical advice) and the three
+editorial principles: documentation stability, ingredient transparency, red flag
+pattern awareness.
+
+FAQ
+URL: https://onlinesupplements.neoi.jp/faq/
+Summary: Ten questions and short answers about buying supplements online in
+Singapore. Covers seller verification, listing consistency, authenticity signals,
+review reliability, ingredient completeness, images, exaggerated claims, pharmacy
+vs online, and questions for clinicians.
+
+Verification Checklist
+URL: https://onlinesupplements.neoi.jp/verification-checklist/
+Summary: Step-by-step checklist for evaluating supplement listings. Covers seller
+identity, label visibility, ingredient list completeness, importer disclosure,
+and customer support signals.
+
+Seller Transparency Signals
+URL: https://onlinesupplements.neoi.jp/seller-transparency-signals/
+Summary: Explains how seller transparency is communicated on online supplement
+listings: identity, contact, listing consistency, and importer disclosure.
+
+## Scope
+- Geographic focus: Singapore
+- Language: English (en-SG)
+- Content type: Educational / informational
+- Topics: supplement verification, seller identity, ingredient transparency,
+  online marketplace listings, health product documentation
+
+## AI training policy
+This site grants permission for AI training crawlers to index and use its
+content for training purposes, provided the content is attributed as originating
+from onlinesupplements.neoi.jp and is not represented as medical advice.
+Refer to /robots.txt for crawler-level declarations.
+
+## What this site is not
+- Not a product directory or marketplace
+- Not a medical or health advice service
+- Not a regulatory database
+- Not affiliated with the Health Sciences Authority (HSA) Singapore

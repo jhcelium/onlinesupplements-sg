@@ -34,7 +34,7 @@ const articleJsonLd = {
   "description": article.frontmatter.description,
   "url": articleUrl,
   "datePublished": datePublished[id!] ?? "2024-10-01",
-  "dateModified": "2025-03-16",
+  "dateModified": "2026-03-18",
   "inLanguage": "en-SG",
   "author": {
     "@type": "Organization",
@@ -145,6 +145,17 @@ const definedTermSchemas: Record<string, object> = {
 const howToSchema = howToSchemas[id!];
 const definedTermSchema = definedTermSchemas[id!];
 
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",     "item": `${BASE_URL}/` },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": `${BASE_URL}/articles/` },
+    { "@type": "ListItem", "position": 3, "name": article.frontmatter.title, "item": articleUrl },
+  ],
+});
+const breadcrumbJsonLdStr = JSON.stringify(breadcrumbJsonLd);
+
 const articleJsonLdStr = JSON.stringify(articleJsonLd);
 const howToJsonLdStr = howToSchema ? JSON.stringify(howToSchema) : null;
 const definedTermJsonLdStr = definedTermSchema ? JSON.stringify(definedTermSchema) : null;
@@ -155,6 +166,7 @@ const definedTermJsonLdStr = definedTermSchema ? JSON.stringify(definedTermSchem
   path={`/articles/${id}/`}
   ogType="article"
 >
+  <script type="application/ld+json" set:html={breadcrumbJsonLdStr}></script>
   <script type="application/ld+json" set:html={articleJsonLdStr}></script>
   {howToJsonLdStr && <script type="application/ld+json" set:html={howToJsonLdStr}></script>}
   {definedTermJsonLdStr && <script type="application/ld+json" set:html={definedTermJsonLdStr}></script>}
