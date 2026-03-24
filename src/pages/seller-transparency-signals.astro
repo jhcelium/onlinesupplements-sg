@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_ORIGIN, canonicalAbsolute } from "../lib/site";
 
-const BASE_URL = "https://onlinesupplements.neoi.jp";
-const PAGE_URL = `${BASE_URL}/seller-transparency-signals/`;
+const PAGE_URL = canonicalAbsolute("/seller-transparency-signals");
 
 const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE_URL}/` },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_ORIGIN },
     { "@type": "ListItem", "position": 2, "name": "Seller Transparency Signals", "item": PAGE_URL },
   ],
 });
@@ -25,7 +25,11 @@ const webPageJsonLd = JSON.stringify({
 <BaseLayout
   title="Buy Supplements Online Singapore | Seller Transparency Signals"
   description="A structured explanation of seller transparency signals commonly seen on online supplement listings in Singapore."
-  path="/seller-transparency-signals/"
+  path="/seller-transparency-signals"
+  breadcrumbs={[
+    { name: "Home", href: "/" },
+    { name: "Seller transparency signals", href: "/seller-transparency-signals" },
+  ]}
 >
   <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
   <script type="application/ld+json" set:html={webPageJsonLd}></script>

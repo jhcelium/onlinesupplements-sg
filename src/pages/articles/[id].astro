@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { loadArticle, listArticleIds } from "../../lib/content";
+import { SITE_ORIGIN, canonicalAbsolute } from "../../lib/site";
 
 export async function getStaticPaths() {
   const ids = listArticleIds();
@@ -10,8 +11,7 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const article = loadArticle(id!);
 
-const BASE_URL = "https://onlinesupplements.neoi.jp";
-const articleUrl = `${BASE_URL}/articles/${id}/`;
+const articleUrl = canonicalAbsolute(`/articles/${id}`);
 
 // Publication dates per article
 const datePublished: Record<string, string> = {
@@ -39,12 +39,12 @@ const articleJsonLd = {
   "author": {
     "@type": "Organization",
     "name": "Online Supplements Singapore",
-    "url": `${BASE_URL}/`
+    "url": SITE_ORIGIN,
   },
   "publisher": {
     "@type": "Organization",
     "name": "Online Supplements Singapore",
-    "url": `${BASE_URL}/`
+    "url": SITE_ORIGIN,
   },
   "speakable": {
     "@type": "SpeakableSpecification",
@@ -145,16 +145,20 @@ const definedTermSchemas: Record<string, object> = {
 const howToSchema = howToSchemas[id!];
 const definedTermSchema = definedTermSchemas[id!];
 
-const breadcrumbJsonLd = JSON.stringify({
+const breadcrumbJsonLdObject = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home",     "item": `${BASE_URL}/` },
-    { "@type": "ListItem", "position": 2, "name": "Articles", "item": `${BASE_URL}/articles/` },
-    { "@type": "ListItem", "position": 3, "name": article.frontmatter.title, "item": articleUrl },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_ORIGIN },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": article.frontmatter.title,
+      "item": articleUrl,
+    },
   ],
-});
-const breadcrumbJsonLdStr = JSON.stringify(breadcrumbJsonLd);
+};
+const breadcrumbJsonLdStr = JSON.stringify(breadcrumbJsonLdObject);
 
 const articleJsonLdStr = JSON.stringify(articleJsonLd);
 const howToJsonLdStr = howToSchema ? JSON.stringify(howToSchema) : null;
@@ -163,8 +167,12 @@ const definedTermJsonLdStr = definedTermSchema ? JSON.stringify(definedTermSchem
 <BaseLayout
   title={article.frontmatter.title}
   description={article.frontmatter.description}
-  path={`/articles/${id}/`}
+  path={`/articles/${id}`}
   ogType="article"
+  breadcrumbs={[
+    { name: "Home", href: "/" },
+    { name: article.frontmatter.title, href: `/articles/${id}` },
+  ]}
 >
   <script type="application/ld+json" set:html={breadcrumbJsonLdStr}></script>
   <script type="application/ld+json" set:html={articleJsonLdStr}></script>
