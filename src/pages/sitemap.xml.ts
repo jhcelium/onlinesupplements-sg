@@ -24,18 +24,23 @@ type UrlEntry = {
   priority: string;
 };
 
+function locFromPath(base: string, path: string): string {
+  const normalized = path.replace(/\/+$/, "");
+  return normalized === "" ? base : `${base}${normalized}`;
+}
+
 export async function GET() {
   const base = `https://${site.domain}`;
   const staticEntries: UrlEntry[] = [
-    { path: "/",                      lastmod: "2026-03-18", changefreq: "weekly",  priority: "1.0" },
-    { path: "/about/",                lastmod: "2026-03-18", changefreq: "monthly", priority: "0.7" },
-    { path: "/faq/",                  lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
-    { path: "/verification-checklist/",      lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
-    { path: "/seller-transparency-signals/", lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
+    { path: "/",                         lastmod: "2026-03-18", changefreq: "weekly",  priority: "1.0" },
+    { path: "/about",                    lastmod: "2026-03-18", changefreq: "monthly", priority: "0.7" },
+    { path: "/faq",                      lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
+    { path: "/verification-checklist",   lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
+    { path: "/seller-transparency-signals", lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
   ];
 
   const articleEntries: UrlEntry[] = listArticleIds().map((id) => ({
-    path: `/articles/${id}/`,
+    path: `/articles/${id}`,
     lastmod: "2026-03-18",
     changefreq: "monthly",
     priority: "0.6",
@@ -47,7 +52,7 @@ export async function GET() {
     .map(
       (e) =>
         `<url>` +
-        `<loc>${base}${e.path}</loc>` +
+        `<loc>${locFromPath(base, e.path)}</loc>` +
         `<lastmod>${e.lastmod}</lastmod>` +
         `<changefreq>${e.changefreq}</changefreq>` +
         `<priority>${e.priority}</priority>` +

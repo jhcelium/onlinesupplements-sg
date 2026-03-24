@@ -1,5 +1,5 @@
 # LLM.txt — Online Supplements Singapore
-# https://onlinesupplements.neoi.jp/
+# https://onlinesupplements.neoi.jp
 # Last updated: 2026-03-18
 
 ## Entity description
@@ -15,32 +15,32 @@ for verifying supplement listings in Singapore.
 ## Key pages
 
 Home
-URL: https://onlinesupplements.neoi.jp/
+URL: https://onlinesupplements.neoi.jp
 Summary: Practical verification guide for buying supplements online in Singapore.
 Covers seller identity, listing consistency, red flags, and safer decision framing.
 
 About
-URL: https://onlinesupplements.neoi.jp/about/
+URL: https://onlinesupplements.neoi.jp/about
 Summary: Purpose and approach of the site. Documents what the site does not do
 (no sales, no rankings, no dosage advice, no medical advice) and the three
 editorial principles: documentation stability, ingredient transparency, red flag
 pattern awareness.
 
 FAQ
-URL: https://onlinesupplements.neoi.jp/faq/
+URL: https://onlinesupplements.neoi.jp/faq
 Summary: Ten questions and short answers about buying supplements online in
 Singapore. Covers seller verification, listing consistency, authenticity signals,
 review reliability, ingredient completeness, images, exaggerated claims, pharmacy
 vs online, and questions for clinicians.
 
 Verification Checklist
-URL: https://onlinesupplements.neoi.jp/verification-checklist/
+URL: https://onlinesupplements.neoi.jp/verification-checklist
 Summary: Step-by-step checklist for evaluating supplement listings. Covers seller
 identity, label visibility, ingredient list completeness, importer disclosure,
 and customer support signals.
 
 Seller Transparency Signals
-URL: https://onlinesupplements.neoi.jp/seller-transparency-signals/
+URL: https://onlinesupplements.neoi.jp/seller-transparency-signals
 Summary: Explains how seller transparency is communicated on online supplement
 listings: identity, contact, listing consistency, and importer disclosure.
 

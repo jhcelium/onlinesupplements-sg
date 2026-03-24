@@ -1,5 +1,7 @@
 ---
 import site from "../../data/site.json";
+import { canonicalAbsolute } from "../lib/site";
+
 interface Props {
   title?: string;
   description?: string;
@@ -10,7 +12,7 @@ interface Props {
 const { title, description, path, image, ogType } = Astro.props;
 
 const fullTitle = title ?? site.siteName;
-const canonical = `https://${site.domain}${path ?? "/"}`;
+const canonical = canonicalAbsolute(path);
 const desc = description ?? "";
 const ogImage = image
   ? `https://${site.domain}${image}`

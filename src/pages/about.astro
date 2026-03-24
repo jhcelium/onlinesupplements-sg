@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_ORIGIN, canonicalAbsolute } from "../lib/site";
 
-const BASE_URL = "https://onlinesupplements.neoi.jp";
-const PAGE_URL = `${BASE_URL}/about/`;
+const PAGE_URL = canonicalAbsolute("/about");
 
 const aboutPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -14,7 +14,7 @@ const aboutPageJsonLd = JSON.stringify({
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE_URL}/` },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_ORIGIN },
       { "@type": "ListItem", "position": 2, "name": "About", "item": PAGE_URL },
     ],
   },
@@ -24,7 +24,7 @@ const orgJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Online Supplements Singapore",
-  "url": `${BASE_URL}/`,
+  "url": SITE_ORIGIN,
   "description": "An educational resource helping Singapore residents apply consistent, documentation-based evaluation to online supplement listings.",
   "inLanguage": "en-SG",
   "areaServed": {
@@ -50,8 +50,12 @@ const orgJsonLd = JSON.stringify({
 <BaseLayout
   title="About | Online Supplements Singapore"
   description="Purpose: improve verification habits for online supplement shopping in Singapore."
-  path="/about/"
+  path="/about"
   image="/seller-scorecard.png"
+  breadcrumbs={[
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+  ]}
 >
   <script type="application/ld+json" set:html={aboutPageJsonLd}></script>
   <script type="application/ld+json" set:html={orgJsonLd}></script>

@@ -1,13 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const BASE_URL = "https://onlinesupplements.neoi.jp";
+import { SITE_ORIGIN } from "../lib/site";
 
 const websiteJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Online Supplements Singapore",
-  "url": `${BASE_URL}/`,
+  "url": SITE_ORIGIN,
   "description": "Educational verification guide for online supplement listings in Singapore. Learn how to evaluate seller identity, label consistency, ingredient documentation, and red flags.",
   "inLanguage": "en-SG",
   "about": {
@@ -18,7 +17,7 @@ const websiteJsonLd = JSON.stringify({
   "publisher": {
     "@type": "Organization",
     "name": "Online Supplements Singapore",
-    "url": `${BASE_URL}/`,
+    "url": SITE_ORIGIN,
     "knowsAbout": [
       "health supplements",
       "supplement verification",
@@ -37,7 +36,7 @@ const websiteJsonLd = JSON.stringify({
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": `${BASE_URL}/?q={search_term_string}`
+      "urlTemplate": `${SITE_ORIGIN}/?q={search_term_string}`
     },
     "query-input": "required name=search_term_string"
   },

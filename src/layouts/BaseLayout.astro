@@ -1,14 +1,21 @@
 ---
 import Seo from "../components/Seo.astro";
 import site from "../../data/site.json";
+
+export interface BreadcrumbItem {
+  name: string;
+  href: string;
+}
+
 interface Props {
   title?: string;
   description?: string;
   path?: string;
   image?: string;
   ogType?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
-const { title, description, path, image, ogType } = Astro.props;
+const { title, description, path, image, ogType, breadcrumbs } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en-SG">
@@ -233,6 +240,45 @@ const { title, description, path, image, ogType } = Astro.props;
       }
       .official-link:hover { text-decoration-color: currentColor; }
 
+      /* Breadcrumb — minimal editorial */
+      .breadcrumb-nav {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0 0 1.25rem;
+        line-height: 1.5;
+      }
+      .breadcrumb {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0;
+      }
+      .breadcrumb li {
+        display: inline;
+        margin: 0;
+      }
+      .breadcrumb li:not(:last-child)::after {
+        content: "/";
+        margin: 0 0.4rem;
+        color: var(--subtle);
+        text-decoration: none;
+      }
+      .breadcrumb a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: currentColor;
+      }
+      .breadcrumb [aria-current="page"] {
+        color: var(--text);
+      }
+
       /* ── Responsive ── */
       @media (max-width: 600px) {
         h1 { font-size: 1.55rem; }
@@ -247,8 +293,8 @@ const { title, description, path, image, ogType } = Astro.props;
     <header>
       <nav>
         <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/faq/">FAQ</a>
+        <a href="/about">About</a>
+        <a href="/faq">FAQ</a>
       </nav>
       <a
         href="https://supplement.neoi.jp/en"
@@ -260,7 +306,24 @@ const { title, description, path, image, ogType } = Astro.props;
         <img src="/neoi-logo.png" alt="supplement.neoi.jp" loading="lazy" />
       </a>
     </header>
-    <main><slot /></main>
+    <main>
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            {breadcrumbs.map((item, i) => (
+              <li>
+                {i < breadcrumbs.length - 1 ? (
+                  <a href={item.href}>{item.name}</a>
+                ) : (
+                  <span aria-current="page">{item.name}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      <slot />
+    </main>
     <footer>
       <div>{site.siteName}</div>
       <div>Educational content only. Not medical or treatment advice.</div>
