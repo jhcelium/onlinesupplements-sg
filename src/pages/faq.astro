@@ -2,67 +2,59 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE_ORIGIN, canonicalAbsolute } from "../lib/site";
 
+const pageTitle = "Buy Supplements Online Singapore | FAQ";
+const pageDescription =
+  "Frequently asked questions about online supplement listings, seller transparency, and buying context in Singapore.";
 const faqPageUrl = canonicalAbsolute("/faq");
+
+const faqItems = [
+  {
+    q: 'What does "buy supplements online singapore" usually mean?',
+    a: "The phrase refers to browsing and purchasing health supplements via the internet with Singapore as the delivery or billing context. It covers marketplace listings, brand sites, and overseas sellers that ship here. It does not name a single regulator-approved storefront. Readers typically want clearer seller identity, ingredient visibility, and shipping terms before they complete a purchase.",
+  },
+  {
+    q: "What seller information is commonly visible on online listings?",
+    a: "Common fields include a seller or shop name, business registration where provided, contact options such as email or chat, and policy pages for returns or refunds. Some listings show a registered address. Product blocks add titles, images, price, and descriptive text. Each platform decides which fields are mandatory.",
+  },
+  {
+    q: "Why do people look for importer or distributor information?",
+    a: "Importer or distributor lines describe which entity placed the product on the local market. Readers use them to connect packaging claims to a named organisation and to see whether the seller is the brand, an authorised partner, or a reseller. When missing, only the marketplace profile and photos remain to inspect.",
+  },
+  {
+    q: "What does listing completeness usually include?",
+    a: "Completeness usually means a clear product name, coherent ingredient or label references, imagery that matches the described pack, price and currency, and shipping or fulfilment notes. Buyers expect alignment between headline, bullet points, and fine print. Missing ingredients, conflicting titles, or generic photos reduce transparent reading of the offer.",
+  },
+  {
+    q: "Why do people search for seller transparency signals?",
+    a: "People search when they want a calm checklist for interpreting supplement listing transparency signals without marketing noise. They may be unsure what seller information should be visible or how platform layouts hide key facts. Queries about how to read supplement seller information online seek neutral language for comparing sellers before asking clinicians about personal suitability.",
+  },
+  {
+    q: "Is this site reviewing or recommending products?",
+    a: "No. This site publishes educational explanations only. It does not review, rate, rank, or recommend supplements or sellers. Nothing here endorses efficacy or safety outcomes. For personal decisions, qualified clinicians and official product information remain the appropriate sources beyond general listing-reading guidance.",
+  },
+];
 
 const breadcrumbJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE_ORIGIN },
-    { "@type": "ListItem", "position": 2, "name": "FAQ", "item": faqPageUrl },
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+    { "@type": "ListItem", position: 2, name: "FAQ", item: faqPageUrl },
   ],
 });
 
-const faqItems = [
-  {
-    q: "How to verify supplement seller Singapore online?",
-    a: "Start with identity: the seller should display a business name, registration details, physical address, and contact information. Stable policies (returns, refunds) that do not change between visits are a positive signal. Supplement seller verification Singapore means evaluating the seller's documentation before evaluating the product.",
-  },
-  {
-    q: "What should be consistent across supplement listings?",
-    a: "The ingredient list — including specific ingredient forms and amounts in standard units — should match across all sellers listing the same product. Label consistency across sellers is a meaningful signal. If one seller shows 'magnesium citrate 200mg' and another shows only 'magnesium', treat this as a gap that warrants further inquiry.",
-  },
-  {
-    q: "How to verify supplement listing Singapore if info conflicts?",
-    a: "Prefer the listing that aligns with official product information from the brand or manufacturer. If you cannot locate a primary source, and seller descriptions conflict, pause. A credible seller will be able to direct you to consistent documentation. Conflicting information is not automatically disqualifying, but it does require resolution before relying on either listing.",
-  },
-  {
-    q: "Are marketplace reviews reliable for supplement verification?",
-    a: "Reviews are secondary signals. They reflect user experience, not ingredient accuracy or documentation quality. A product with many positive reviews may still have an incomplete ingredient list. Use reviews as context — not as a substitute for checking the ingredient list, seller identity, and official product information.",
-  },
-  {
-    q: "What does 'authentic supplements Singapore online' practically mean?",
-    a: "Authentic supplements Singapore online means the product matches its official documentation: the ingredient list is complete and matches the physical label, the seller can be verified, and the product originates from an identifiable supply chain. Authenticity is a documentation question, not a marketing claim.",
-  },
-  {
-    q: "How to check ingredient list completeness?",
-    a: "A complete ingredient list names each active ingredient by its specific chemical form (e.g. 'zinc gluconate', not just 'zinc'), states the amount per serving in standard units (mg, mcg, IU), and lists all excipients or inactive ingredients. If a listing uses 'proprietary blend' without amounts, or groups several ingredients under a single unnamed category, the list is incomplete.",
-  },
-  {
-    q: "Why are images not enough to verify a supplement listing?",
-    a: "Product images on marketplace listings are often stock photos or images that do not show the current batch label. An image cannot confirm what is in the bottle you will receive. Written ingredient information — matched against official product documentation — is more reliable than images alone.",
-  },
-  {
-    q: "What to do if claims on a supplement listing feel exaggerated?",
-    a: "Treat exaggerated claims as a documentation signal, not just a marketing style. Phrases like 'guaranteed results', 'cure', 'miracle', or 'instant' are not appropriate for supplement listings. If a listing's claims are inconsistent with its ingredient documentation, apply additional scrutiny to the entire listing — including the seller's identity and return policy.",
-  },
-  {
-    q: "Pharmacy vs online: what changes in verification?",
-    a: "A licensed pharmacy in Singapore operates under regulatory oversight, with trained staff and product accountability. Online listings may originate from multiple jurisdictions with variable oversight levels. The core verification principles remain the same, but online listings require you to do more of the verification work yourself: checking seller identity, ingredient documentation, and listing consistency.",
-  },
-  {
-    q: "What questions should I bring to a clinician about supplements?",
-    a: "This site does not provide medical advice. If you are considering supplements, a clinician can help you assess whether a specific ingredient is appropriate for your situation, whether it interacts with any medication you take, and what a reasonable approach looks like for your health context. That conversation is separate from product verification.",
-  },
-];
+const webPageJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: pageTitle,
+  url: faqPageUrl,
+  description: pageDescription,
+  inLanguage: "en-SG",
+});
 
-const faqJsonLd = JSON.stringify({
+const faqPageJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": ["h1", "main section:first-of-type h2", "main section:first-of-type p"]
-  },
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.q,
@@ -71,23 +63,31 @@ const faqJsonLd = JSON.stringify({
 });
 ---
 <BaseLayout
-  title="FAQ | Online Supplements in Singapore"
-  description="Common questions about buying supplements online in Singapore and verifying listings."
+  title={pageTitle}
+  description={pageDescription}
   path="/faq"
-  image="/quick-checklist.png"
   breadcrumbs={[
     { name: "Home", href: "/" },
     { name: "FAQ", href: "/faq" },
   ]}
 >
   <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
-  <script type="application/ld+json" set:html={faqJsonLd}></script>
+  <script type="application/ld+json" set:html={webPageJsonLd}></script>
+  <script type="application/ld+json" set:html={faqPageJsonLd}></script>
 
-  <h1>Online Supplement Questions in Singapore</h1>
+  <h1>Buy Supplements Online Singapore: Frequently Asked Questions</h1>
 
   <div class="disclaimer">
-    General educational information only. Not medical advice.
+    General educational information only. Not medical or legal advice.
   </div>
+
+  <p>
+    When people search to buy supplements online Singapore, they are usually comparing channels that list health supplements for delivery or pickup in Singapore: marketplaces, brand stores, and cross-border sellers.
+    Online supplements Singapore pages mix marketing copy with variable amounts of seller identity and label detail.
+    A supplement seller Singapore profile may show registration, contacts, and policies, but structure differs by platform.
+    On a supplement marketplace Singapore listing, what seller information should be visible is not uniform—buyers often look for supplement listing transparency signals and guidance on how to read supplement seller information online before they interpret prices or imagery.
+    This FAQ summarises common reading questions in neutral, non-commercial language.
+  </p>
 
   {faqItems.map((item) => (
     <section>
@@ -96,28 +96,18 @@ const faqJsonLd = JSON.stringify({
     </section>
   ))}
 
-  <div class="cross-ref">
-    For a broader guide to the supplement landscape in Singapore, see the
-    <a href="https://supplementsingapore.neoi.jp">Supplements Singapore guide</a>.
+  <h2>Key Takeaway</h2>
+  <div class="key-takeaway">
+    Reading listings for online supplements Singapore means checking which seller fields the platform exposes, whether ingredients and label references match the images, and whether importer or distributor lines appear.
+    Supplement listing transparency signals are strongest when title, text, and imagery stay aligned.
+    How to read supplement seller information online is a documentation skill: note what is stated, what is missing, and what would need a follow-up question.
+    This site explains patterns; it does not review or recommend specific products.
   </div>
 
-  <figure>
-    <img
-      src="/quick-checklist.png"
-      alt="5-Minute Quick Verification Checklist — 10 essential checks before buying supplements online, covering seller identity, ingredient list, product images, expiry dates, claims language, pressure tactics, reviews, return policy, quality indicators, and price"
-      width="764"
-      height="1024"
-      fetchpriority="high"
-      loading="eager"
-      decoding="sync"
-    />
-    <figcaption>Quick-reference checklist for every online supplement purchase. Educational use only.</figcaption>
-  </figure>
-
+  <h2>Related Context</h2>
   <p>
-    <a href="https://supplement.neoi.jp/en" target="_blank" rel="noopener" class="official-link">
-      Visit Official Neoi Supplement Site →
-    </a>
+    For wider background on supplements in Singapore—not seller reviews or product picks—see the
+    <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
   </p>
 
   <p class="page-note">Educational content only. Not medical or treatment advice.</p>

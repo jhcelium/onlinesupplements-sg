@@ -1,0 +1,23 @@
+---
+/**
+ * Alias for Seo.astro — same meta/OG/Twitter output.
+ * Pages receive tags via BaseLayout → Seo; this file exists for parity with “SEOHead” naming.
+ */
+import Seo from "./Seo.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  ogType?: string;
+}
+const props = Astro.props as Props;
+---
+<Seo
+  title={props.title}
+  description={props.description}
+  path={props.path}
+  image={props.image}
+  ogType={props.ogType}
+/>
