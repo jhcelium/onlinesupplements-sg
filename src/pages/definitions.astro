@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_ORIGIN, canonicalAbsolute } from "../lib/site";
+
+const pageTitle = "Buy Supplements Online Singapore | Definitions";
+const pageDescription =
+  "Plain-language definitions for reading online supplement listings in Singapore: seller transparency, listing completeness, and related terms.";
+const pageUrl = canonicalAbsolute("/definitions");
+
+const definedTerms = [
+  {
+    name: "Seller transparency",
+    body: "The degree to which a seller makes identity, contact channels, and policy text visible on the listing or profile without the buyer having to ask. Transparency is about documentation visibility, not a guarantee of product quality.",
+  },
+  {
+    name: "Listing completeness",
+    body: "How fully a product page states the product name, ingredient or label references, imagery that matches the described pack, price, and fulfilment context. Gaps in any of these make neutral reading of the offer harder.",
+  },
+  {
+    name: "Supplement marketplace listing",
+    body: "A product page on a multi-seller platform where the same SKU may be offered by different shops. Structure and required fields vary by platform; seller profiles and product blocks are not standardised across sites.",
+  },
+  {
+    name: "Importer or distributor (listing context)",
+    body: "A named entity referenced on packaging or in copy as responsible for placing the product in a market. Readers use it to relate the offer to a supply-chain role; absence means that layer is not visible from the page alone.",
+  },
+  {
+    name: "Label consistency",
+    body: "Alignment among the listing title, written ingredient or claims text, and images of the pack. Inconsistency does not by itself prove a problem, but it is a signal to compare sources before relying on the page.",
+  },
+  {
+    name: "Educational supplement content",
+    body: "Non-commercial information that explains how to read listings and documentation. It does not replace medical advice, product approval, or personalised guidance from a qualified clinician.",
+  },
+];
+
+const breadcrumbJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_ORIGIN },
+    { "@type": "ListItem", position: 2, name: "Definitions", item: pageUrl },
+  ],
+});
+
+const webPageJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: pageTitle,
+  url: pageUrl,
+  description: pageDescription,
+  inLanguage: "en-SG",
+});
+
+const definedTermSetJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  name: "Online supplement listing definitions (Singapore context)",
+  description: pageDescription,
+  inLanguage: "en-SG",
+  hasDefinedTerm: definedTerms.map((t) => ({
+    "@type": "DefinedTerm",
+    name: t.name,
+    description: t.body,
+  })),
+});
+---
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  path="/definitions"
+  breadcrumbs={[
+    { name: "Home", href: "/" },
+    { name: "Definitions", href: "/definitions" },
+  ]}
+>
+  <script type="application/ld+json" set:html={breadcrumbJsonLd}></script>
+  <script type="application/ld+json" set:html={webPageJsonLd}></script>
+  <script type="application/ld+json" set:html={definedTermSetJsonLd}></script>
+
+  <h1>Definitions: Reading Online Supplement Listings in Singapore</h1>
+
+  <div class="disclaimer">
+    General educational information only. Not medical or legal advice. These definitions describe how words are used on this site and in typical marketplace copy; they are not regulatory definitions.
+  </div>
+
+  <p>
+    When you buy supplements online Singapore, the same words appear across platforms with different levels of detail.
+    This page fixes plain-language meanings for supplement listing transparency signals and related ideas used elsewhere on this site.
+    They support neutral reading of online supplements Singapore pages—not product choice or health decisions.
+  </p>
+
+  {definedTerms.map((t) => (
+    <section>
+      <h2>{t.name}</h2>
+      <p>{t.body}</p>
+    </section>
+  ))}
+
+  <div class="cross-ref">
+    For questions framed as Q&amp;A, see <a href="/faq">FAQ</a>.
+    For a wider Singapore supplement overview, see the
+    <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
+  </div>
+
+  <p class="page-note">Educational content only. Not medical or treatment advice.</p>
+</BaseLayout>

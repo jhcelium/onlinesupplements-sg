@@ -35,6 +35,7 @@ export async function GET() {
     { path: "/",                         lastmod: "2026-03-18", changefreq: "weekly",  priority: "1.0" },
     { path: "/about",                    lastmod: "2026-03-18", changefreq: "monthly", priority: "0.7" },
     { path: "/faq",                      lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
+    { path: "/definitions",              lastmod: "2026-03-24", changefreq: "monthly", priority: "0.75" },
     { path: "/verification-checklist",   lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
     { path: "/seller-transparency-signals", lastmod: "2026-03-18", changefreq: "monthly", priority: "0.8" },
   ];

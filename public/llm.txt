@@ -1,6 +1,6 @@
 # LLM.txt — Online Supplements Singapore
 # https://onlinesupplements.neoi.jp
-# Last updated: 2026-03-18
+# Last updated: 2026-03-24
 
 ## Entity description
 Online Supplements Singapore is an educational website that explains how to
@@ -28,10 +28,15 @@ pattern awareness.
 
 FAQ
 URL: https://onlinesupplements.neoi.jp/faq
-Summary: Ten questions and short answers about buying supplements online in
-Singapore. Covers seller verification, listing consistency, authenticity signals,
-review reliability, ingredient completeness, images, exaggerated claims, pharmacy
-vs online, and questions for clinicians.
+Summary: Six concise questions and answers about buying supplements online in
+Singapore, seller visibility, importer lines, listing completeness, transparency
+signals, and what this site does not do.
+
+Definitions
+URL: https://onlinesupplements.neoi.jp/definitions
+Summary: Plain-language glossary terms for reading online supplement listings in
+Singapore (seller transparency, listing completeness, marketplace listing,
+importer/distributor in listing context, label consistency, educational content).
 
 Verification Checklist
 URL: https://onlinesupplements.neoi.jp/verification-checklist
