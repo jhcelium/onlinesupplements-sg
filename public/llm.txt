@@ -34,9 +34,10 @@ signals, and what this site does not do.
 
 Definitions
 URL: https://onlinesupplements.neoi.jp/definitions
-Summary: Plain-language glossary terms for reading online supplement listings in
-Singapore (seller transparency, listing completeness, marketplace listing,
-importer/distributor in listing context, label consistency, educational content).
+Summary: Five defined terms for Singapore online supplement listings: Seller
+Transparency, Listing Completeness, Importer Disclosure, Distributor Information,
+Product Listing Consistency; intro, key takeaway, and link to Supplements
+Singapore guide.
 
 Verification Checklist
 URL: https://onlinesupplements.neoi.jp/verification-checklist

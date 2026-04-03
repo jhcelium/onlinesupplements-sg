@@ -4,33 +4,45 @@ import { SITE_ORIGIN, canonicalAbsolute } from "../lib/site";
 
 const pageTitle = "Buy Supplements Online Singapore | Definitions";
 const pageDescription =
-  "Plain-language definitions for reading online supplement listings in Singapore: seller transparency, listing completeness, and related terms.";
+  "Definitions of key online supplement terms in Singapore, including seller transparency, listing completeness, importer disclosure, and distributor information.";
 const pageUrl = canonicalAbsolute("/definitions");
 
+/** Each term: exact H2 title, direct answer ~50–60w, supporting ~80–120w */
 const definedTerms = [
   {
-    name: "Seller transparency",
-    body: "The degree to which a seller makes identity, contact channels, and policy text visible on the listing or profile without the buyer having to ask. Transparency is about documentation visibility, not a guarantee of product quality.",
+    name: "Seller Transparency",
+    direct:
+      "Seller transparency means how clearly a seller states who they are, how to reach them, and where policies such as returns are published. It is a documentation concept: more visible fields make reading easier; fewer visible fields mean more is unknown from the page alone. It does not certify product quality or regulatory status.",
+    support:
+      "When people ask what seller transparency means in a marketplace context, they are usually comparing shop profiles and product panels. A display name, registration hints, chat or email, and policy links are common elements. Buyers who buy supplements online Singapore may see different combinations on the same platform for different shops. Transparency is read relative to what the platform requires, not relative to an absolute checklist enforced on every listing. The goal of this definition is to separate visible documentation from marketing tone: a calm listing can still omit fields, and a busy layout can still hide contact detail in subpages. Neutral reading notes what is shown, what is missing, and whether the same fields appear on repeat visits.",
   },
   {
-    name: "Listing completeness",
-    body: "How fully a product page states the product name, ingredient or label references, imagery that matches the described pack, price, and fulfilment context. Gaps in any of these make neutral reading of the offer harder.",
+    name: "Listing Completeness",
+    direct:
+      "Listing completeness describes how much core product information appears together on one screen: name, label or ingredient pointers, imagery, price, and fulfilment hints. A complete listing makes it easier to compare text to images. It does not promise accuracy—only that the usual blocks are present for review.",
+    support:
+      "What listing completeness usually includes varies by channel, but readers often expect the title to match the pack image, the ingredient section to name forms or refer to the label, and shipping notes to state where the item ships from. Supplement listing transparency signals weaken when one block references a variant that images do not show. For online supplement seller transparency, completeness interacts with seller fields: sometimes policies live on the profile while ingredients sit on the product tab. Describing completeness avoids saying a listing is wrong; it states which standard blocks are present or absent so follow-up questions can be targeted.",
   },
   {
-    name: "Supplement marketplace listing",
-    body: "A product page on a multi-seller platform where the same SKU may be offered by different shops. Structure and required fields vary by platform; seller profiles and product blocks are not standardised across sites.",
+    name: "Importer Disclosure",
+    direct:
+      "Importer disclosure is any clear naming of the entity that imported the product into the market named on the listing or label. It helps readers relate the offer to a supply step beyond the storefront username. Missing disclosure leaves importer identity undocumented from what is visible online.",
+    support:
+      "What importer disclosure means in practice is often a line on the pack photo or a sentence in the description. Not every marketplace mandates it in the same place. Readers use it to see whether a brand, an authorised agent, or another party appears. Importer disclosure is informational framing, not a verdict on legality. When learning how distributor information is shown online versus importer lines, note that importers are often tied to customs and first placement in a territory. If only photos show the line, the text panel may still be silent—completeness and transparency readings apply separately.",
   },
   {
-    name: "Importer or distributor (listing context)",
-    body: "A named entity referenced on packaging or in copy as responsible for placing the product in a market. Readers use it to relate the offer to a supply-chain role; absence means that layer is not visible from the page alone.",
+    name: "Distributor Information",
+    direct:
+      "Distributor information identifies a party authorised or described as moving goods from a brand or importer toward retailers or end buyers. Online it may appear next to importer lines or only on packaging images. Its presence clarifies a role in the chain; its absence leaves that role unstated on the page.",
+    support:
+      "How distributor information is shown online differs: some listings name a national distributor in copy, others rely on fine print in photos. Readers comparing distributor information to importer disclosure look for two names that may match or differ. A reseller may not repeat either line in the title. Neutral use of the term avoids assuming bad faith when information is partial—it records what the interface shows. For Singapore-facing pages, names may reference local entities or regional offices; verifying spelling across image and text is part of reading, not of judging the seller.",
   },
   {
-    name: "Label consistency",
-    body: "Alignment among the listing title, written ingredient or claims text, and images of the pack. Inconsistency does not by itself prove a problem, but it is a signal to compare sources before relying on the page.",
-  },
-  {
-    name: "Educational supplement content",
-    body: "Non-commercial information that explains how to read listings and documentation. It does not replace medical advice, product approval, or personalised guidance from a qualified clinician.",
+    name: "Product Listing Consistency",
+    direct:
+      "Product listing consistency is alignment among title, bullet copy, ingredient text, and imagery for the same offer. Consistent pages repeat the same variant names and amounts across blocks. Inconsistency means at least one block does not match the others. It signals a need to compare sources, not an automatic judgment of the product.",
+    support:
+      "Supplement listing transparency signals are easier to weigh when the headline, the nutrition or supplement facts reference, and the photo agree on flavour, count, and form. When one block updates without others, repeat visits may show drift. Online supplement seller transparency and listing consistency are related but distinct: a seller can be transparent about identity while a product block lags on image updates. Readers note inconsistency to decide whether to seek official brand pages or stay with the marketplace view. This definition describes a pattern useful for documentation-first reading.",
   },
 ];
 
@@ -61,7 +73,7 @@ const definedTermSetJsonLd = JSON.stringify({
   hasDefinedTerm: definedTerms.map((t) => ({
     "@type": "DefinedTerm",
     name: t.name,
-    description: t.body,
+    description: `${t.direct} ${t.support}`,
   })),
 });
 ---
@@ -78,30 +90,42 @@ const definedTermSetJsonLd = JSON.stringify({
   <script type="application/ld+json" set:html={webPageJsonLd}></script>
   <script type="application/ld+json" set:html={definedTermSetJsonLd}></script>
 
-  <h1>Definitions: Reading Online Supplement Listings in Singapore</h1>
+  <h1>Buy Supplements Online Singapore: Definitions</h1>
 
   <div class="disclaimer">
     General educational information only. Not medical or legal advice. These definitions describe how words are used on this site and in typical marketplace copy; they are not regulatory definitions.
   </div>
 
   <p>
-    When you buy supplements online Singapore, the same words appear across platforms with different levels of detail.
-    This page fixes plain-language meanings for supplement listing transparency signals and related ideas used elsewhere on this site.
-    They support neutral reading of online supplements Singapore pages—not product choice or health decisions.
+    When you buy supplements online Singapore, sellers and platforms use a shared vocabulary for identity, documentation, and supply roles.
+    Online supplement seller transparency describes how much of that vocabulary appears without extra requests.
+    Supplement listing transparency signals are the visible fields—contact lines, ingredient references, images—that readers scan before interpreting price or copy.
+    Questions such as what seller transparency means, what listing completeness usually includes, what importer disclosure means, and how distributor information is shown online appear in search because layouts differ by site.
+    Importer disclosure and distributor information are often read side by side on packaging or description text.
+    This page defines five terms in neutral, educational language without reviewing products or giving legal guidance.
   </p>
 
   {definedTerms.map((t) => (
     <section>
       <h2>{t.name}</h2>
-      <p>{t.body}</p>
+      <p>{t.direct}</p>
+      <p>{t.support}</p>
     </section>
   ))}
 
-  <div class="cross-ref">
-    For questions framed as Q&amp;A, see <a href="/faq">FAQ</a>.
-    For a wider Singapore supplement overview, see the
-    <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
+  <h2>Key Takeaway</h2>
+  <div class="key-takeaway">
+    When you buy supplements online Singapore, seller transparency, listing completeness, importer disclosure, distributor information, and product listing consistency are five lenses for reading pages calmly.
+    They describe what appears, how complete the blocks are, and whether text and images agree—not which product to pick.
+    Online supplement seller transparency and listing signals work together: identity and policies sit alongside product panels.
+    Use these definitions to phrase neutral questions, not to rank sellers or claim outcomes.
   </div>
+
+  <h2>Related Context</h2>
+  <p>
+    For a broader, non-commercial overview of the supplement landscape in Singapore—not seller reviews or product picks—see the
+    <a href="https://supplementsingapore.neoi.jp/">Supplements Singapore guide</a>.
+  </p>
 
   <p class="page-note">Educational content only. Not medical or treatment advice.</p>
 </BaseLayout>
